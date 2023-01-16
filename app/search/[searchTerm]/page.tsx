@@ -60,7 +60,7 @@ async function SearchResults({ params: { searchTerm } }: PageProps) {
   }
 
   function stripUrl({ url }: { url: string; }): string {
-    return url.replace(`${process.env.SEARCH_DOMAIN}`, '').replace(/\//g, '');
+    return url.replace(`https://${process.env.DOMAIN}`, '').replace(/\//g, '');
   }
 
 export default SearchResults;
