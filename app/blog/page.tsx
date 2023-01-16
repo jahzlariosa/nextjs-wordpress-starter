@@ -1,4 +1,5 @@
 "use client";
+import { NextPage } from "next";
 import { useEffect, useState } from "react";
 
 interface Post {
@@ -11,8 +12,12 @@ interface Post {
   };
   pageNumber: number;
 }
-
-const Blog = ({ pageProps = { pageNumber: 1 } }) => {
+interface Props {
+  pageProps: {
+    pageNumber: number;
+  };
+}
+const Blog: NextPage<Props> = ({ pageProps = { pageNumber: 1 } }) => {
   const [pageNumber, setPageNumber] = useState(pageProps.pageNumber);
   const [posts, setPosts] = useState<Post[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(pageNumber);
