@@ -12,6 +12,7 @@ interface Post {
   pageNumber: number;
 }
 
+//wip
 const Blog = ({ pageProps = { pageNumber: 1 } }) => {
   const [pageNumber, setPageNumber] = useState(pageProps.pageNumber);
   const [posts, setPosts] = useState<Post[]>([]);
