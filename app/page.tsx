@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { Inter } from '@next/font/google'
 import styles from './page.module.css'
 import PostLists from './posts/PostLists'
@@ -12,8 +13,10 @@ export default function Home() {
         <p className='text-gray-800 italic text-2xl mt-2'>Minus all the bloat, seriously no plugins required</p>
       </div>
       <div className='container my-5 mx-auto' id="blogSection">
-        {/* @ts-ignore */}
-        <PostLists/>        
+        <Suspense fallback={`loading`}>
+          {/* @ts-ignore */}
+          <PostLists/>        
+        </Suspense>
       </div>
     </main>
   )
