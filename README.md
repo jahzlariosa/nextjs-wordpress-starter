@@ -11,6 +11,7 @@ This starter kit is using the experimental version & structure of nextjs 13, for
 | WORDPRESS_REST_API_ENDPOINT        | Yes      | -       | WordPress Rest API endpoit                        |
 | DOMAIN                             | Yes      | -       | To utilize Next Image                             |
 
+`WORDPRESS_REST_API_ENDPOINT=https://www.yoursite.com/wp-json/wp/v2`
 
 ### WordPress Specifics
 Add this snippet to your functions.php to add featured_image_url to rest api.
