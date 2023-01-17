@@ -3,6 +3,7 @@ import { NextPage } from "next";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
+
 interface Post {
   id: number;
   slug: string;
@@ -19,16 +20,19 @@ interface PageProps {
   pageProps: {
     pageNumber: number;
   };
+  endpoint: string;
 }
-const Blog: NextPage<PageProps> = ({ pageProps = { pageNumber: 1 } }) => {
+
+const Blog: NextPage<PageProps> = ({ endpoint, pageProps = { pageNumber: 1 } }) => {
   const [pageNumber, setPageNumber] = useState(pageProps.pageNumber);
   const [posts, setPosts] = useState<Post[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(pageNumber);
   const [totalPages, setTotalPages] = useState<number>(0);
 
   useEffect(() => {
+    console.log()
     fetch(
-      `https://wp.jahz.xyz/wp-json/wp/v2/posts?page=${pageNumber}&per_page=5`, {next: { revalidate: 60}} )
+      `${endpoint}/posts?page=${pageNumber}&per_page=5`, {next: { revalidate: 60}} )
       .then((response) => {
         const totalPagesHeader = response.headers.get("x-wp-totalpages");
         if (totalPagesHeader) {
@@ -40,7 +44,7 @@ const Blog: NextPage<PageProps> = ({ pageProps = { pageNumber: 1 } }) => {
         setCurrentPage(pageNumber);
         setPosts(data);
       });
-  }, [pageNumber]);
+  }, [pageNumber, endpoint]);
 
   return (
     <div>
