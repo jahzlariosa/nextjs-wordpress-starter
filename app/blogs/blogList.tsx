@@ -1,23 +1,26 @@
 "use client";
 import { NextPage } from "next";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 interface Post {
   id: number;
+  slug: string;
   title: {
     rendered: string;
   };
   content: {
     rendered: string;
   };
+  excerpt: {rendered:string};
   pageNumber: number;
 }
-interface Props {
+interface PageProps {
   pageProps: {
     pageNumber: number;
   };
 }
-const Blog: NextPage<Props> = ({ pageProps = { pageNumber: 1 } }) => {
+const Blog: NextPage<PageProps> = ({ pageProps = { pageNumber: 1 } }) => {
   const [pageNumber, setPageNumber] = useState(pageProps.pageNumber);
   const [posts, setPosts] = useState<Post[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(pageNumber);
@@ -25,8 +28,7 @@ const Blog: NextPage<Props> = ({ pageProps = { pageNumber: 1 } }) => {
 
   useEffect(() => {
     fetch(
-      `https://wp.jahz.xyz/wp-json/wp/v2/posts?page=${pageNumber}&per_page=2`
-    )
+      `https://wp.jahz.xyz/wp-json/wp/v2/posts?page=${pageNumber}&per_page=5`, {next: { revalidate: 60}} )
       .then((response) => {
         const totalPagesHeader = response.headers.get("x-wp-totalpages");
         if (totalPagesHeader) {
@@ -46,12 +48,18 @@ const Blog: NextPage<Props> = ({ pageProps = { pageNumber: 1 } }) => {
         Current Page: {currentPage} / Total Pages: {totalPages}
       </div>
       {posts.map((post) => (
-        <div key={post.id}>
-          <h2>{post.title.rendered}</h2>
-          <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+        <div key={post.id} className='bg-white border-gray-300 mb-2 rounded-md col-span-1'>
+        <Link href={`/posts/${post.slug}`}>
+        <div className='grid grid-cols-1'>
+          <div className='postBody p-2'>
+            <h2 dangerouslySetInnerHTML={{__html: post.title.rendered}} className='text-2xl'></h2>
+            <p dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}></p>
+          </div>
         </div>
+        </Link>
+      </div>
       ))}
-      <div className="flex justify-between">
+      <div className="flex">
   <button
     className={`bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium py-2 px-4 rounded-l ${currentPage === 1 ? 'cursor-not-allowed opacity-50' : 'hover:bg-gray-500'}`}
     disabled={currentPage === 1}
@@ -63,7 +71,7 @@ const Blog: NextPage<Props> = ({ pageProps = { pageNumber: 1 } }) => {
     {Array.from({ length: totalPages }, (_, i) => (
       <button
         key={i + 1}
-        className={`bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium py-2 px-4 rounded ${currentPage === i + 1 ? 'bg-gray-500' : 'hover:bg-gray-500'}`}
+        className={`bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium py-2 px-4 rounded mx-1 ${currentPage === i + 1 ? 'bg-gray-500' : 'hover:bg-gray-500'}`}
         onClick={() => setPageNumber(i + 1)}
       >
         {i + 1}

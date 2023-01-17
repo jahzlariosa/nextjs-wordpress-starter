@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Search from "@/app/search/Search";
-import { FaGithub, FaHome } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 
 function MobileNav({ open, setOpen }:any) {
     
@@ -74,7 +74,12 @@ export default function Navbar() {
           <div className="hidden md:flex">
             <Link href="/" className=" dark:text-white mr-3">
               <span className="dark:text-white">
-                <FaHome size={25} className="inline-block"/> Home
+               Home
+              </span>
+            </Link>
+            <Link href="/blogs" className=" dark:text-white mr-3">
+              <span className="dark:text-white">
+                Blog
               </span>
             </Link>
             <Link href="https://github.com/jahzlariosa/nextjs-wordpress-starter" target={`_blank`} className=" dark:text-white mr-3">
