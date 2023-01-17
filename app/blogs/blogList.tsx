@@ -49,7 +49,7 @@ const Blog: NextPage<PageProps> = ({ pageProps = { pageNumber: 1 } }) => {
       </div>
       {posts.map((post) => (
         <div key={post.id} className='bg-white border-gray-300 mb-2 rounded-md col-span-1'>
-        <Link href={`/posts/${post.slug}`}>
+        <Link href={`/blogs/${post.slug}`}>
         <div className='grid grid-cols-1'>
           <div className='postBody p-2'>
             <h2 dangerouslySetInnerHTML={{__html: post.title.rendered}} className='text-2xl'></h2>
