@@ -46,7 +46,7 @@ async function SearchResults({ params: { searchTerm } }: PageProps) {
           return (
             <>
               <li key={results.id} className="bg-white p-2 mb-2 border border-zinc-800 rounded-md">
-                <Link href={`/${results.type}s/${stripUrl({ url: results.url })}`} className="font-bold">
+                <Link href={`/blogs/${stripUrl({ url: results.url })}`} className="font-bold">
                     <span dangerouslySetInnerHTML={{__html:results.title}} ></span>
                 </Link>
               </li>
