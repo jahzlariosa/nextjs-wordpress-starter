@@ -12,12 +12,8 @@ export default function Home() {
         <h1 className='text-7xl font-bold'>NextJS WordPress Starter Kit</h1>
         <p className='text-gray-800 italic text-2xl mt-2'>Minus all the bloat, seriously no plugins required</p>
       </div>
-      <div className='container my-5 mx-auto' id="blogSection">
-        <Suspense fallback={`loading`}>
-          {/* @ts-ignore */}
-          <PostLists/>        
-        </Suspense>
-      </div>
+      {/*@ts-ignore known issue*/}
+      <PostLists />
     </main>
   )
 }

@@ -8,6 +8,7 @@ export type Posts = [
       content: { rendered: string};
       date: string;
       featured_img_url: string;
+      tags: string;
     }
   ]
   
