@@ -27,17 +27,17 @@ async function PostLists() {
                   <div className="grid grid-cols-1">
                     <Image src={post.featured_img_url} width={640} height={0} alt={post.title.rendered}/>
                     <div className="postBody p-2">
-                      <h2
+                      <div
                         dangerouslySetInnerHTML={{
                           __html: post.title.rendered,
                         }}
                         className="text-2xl"
-                      ></h2>
-                      <p
+                      />
+                      <div
                         dangerouslySetInnerHTML={{
                           __html: post.excerpt.rendered,
                         }}
-                      ></p>
+                      />
                     </div>
                   </div>
                 </Link>
