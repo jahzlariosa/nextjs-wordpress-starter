@@ -32,7 +32,8 @@ async function singlePostPage({ params: { slug } }: PageProps) {
     <>
     <div className="container mx-auto px-5 xl:w-7/12">
         <div className="postHeadings py-20">
-            <h2 dangerouslySetInnerHTML={{ __html: post.title.rendered }} className="text-5xl"></h2>
+            <div dangerouslySetInnerHTML={{ __html: post.title.rendered}}/>
+
             <div className="postMeta mt-3">
                 <div className="flex flex-wrap">
                     <div>Date Posted: {tFormat(post.date)}</div>
@@ -53,7 +54,7 @@ async function singlePostPage({ params: { slug } }: PageProps) {
                     />
                     </div>
                 )}
-                <p dangerouslySetInnerHTML={{ __html: post.content.rendered }}></p>
+                <div dangerouslySetInnerHTML={{ __html: post.content.rendered}}/>
                 </div>
             )}
         </div>
