@@ -9,7 +9,7 @@ This starter kit is using the experimental version & structure of nextjs 13, for
 | Name                               | Required | Default | Description                                       |
 | ---------------------------------- | -------- | -       | ------------------------------------------------- |
 | WORDPRESS_REST_API_ENDPOINT        | Yes      | -       | WordPress Rest API endpoit                        |
-| DOMAIN                             | Yes      | -       | To utilize Next Image                             |
+| IMAGE_DOMAIN                             | Yes      | -       | To utilize Next Image                             |
 
 `WORDPRESS_REST_API_ENDPOINT=https://www.yoursite.com/wp-json/wp/v2`
 
